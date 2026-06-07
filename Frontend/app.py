@@ -36,8 +36,9 @@ if st.button("Get Weather"):
                 st.markdown("### 🌦️ Weather Report")
                 st.container(border=True).write(answer)
 
-            else:
-                st.error("Failed to get response from server.")
+           else:
+               st.error(f"Status Code: {res.status_code}")
+               st.write(res.text)
 
         except requests.exceptions.ConnectionError:
             st.error("Backend server is not running.")
