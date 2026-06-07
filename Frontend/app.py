@@ -3,7 +3,7 @@ import requests
 
 st.set_page_config(page_title="Weather Assistant", page_icon="🌤️")
 
-S_URL = "http://127.0.0.1:8000"
+S_URL = st.secrets["BACKEND_URL"]
 
 st.title("🌤️ Weather Assistant")
 
