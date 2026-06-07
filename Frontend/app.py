@@ -7,7 +7,11 @@ S_URL = st.secrets["BACKEND_URL"]
 
 st.title("🌤️ Weather Assistant")
 
-city = st.text_input("City", placeholder="Enter city name")
+city = st.text_input(
+    "City",
+    placeholder="Enter city name"
+)
+
 question = st.text_input(
     "Question",
     placeholder="What is the weather today?"
@@ -17,6 +21,7 @@ if st.button("Get Weather"):
 
     if not city or not question:
         st.warning("Please enter both city and question.")
+
     else:
         try:
             with st.spinner("Getting weather information..."):
@@ -36,9 +41,9 @@ if st.button("Get Weather"):
                 st.markdown("### 🌦️ Weather Report")
                 st.container(border=True).write(answer)
 
-           else:
-               st.error(f"Status Code: {res.status_code}")
-               st.write(res.text)
+            else:
+                st.error(f"Status Code: {res.status_code}")
+                st.write(res.text)
 
-        except requests.exceptions.ConnectionError:
-            st.error("Backend server is not running.")
+        except Exception as e:
+            st.error(f"Error: {e}")
